@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                sh 'pytest'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ner-service:${VERSION} .'
+            }
+        }
+        stage('Push Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh 'docker login -u $USER -p $PASS'
+                    sh 'docker push ner-service:${VERSION}'
+                }
+            }
+        }
+    }
+}

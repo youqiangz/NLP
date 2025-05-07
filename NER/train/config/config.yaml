@@ -1,0 +1,6 @@
+# 模型文件
+pretrained_model:
+  "models/pretrained"
+
+data:
+  "data"

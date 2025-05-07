@@ -1,0 +1,29 @@
+app:
+  name: "NER Service"
+  version: "1.0.0"
+  description: "Named Entity Recognition API Service"
+  debug: false
+
+model:
+  path: "checkpoint/best_model.pt"
+  config_path: "pretrain/bert-base-chinese/config.json"
+  tokenizer: "pretrain/bert-base-chinese/vocab.txt"
+  labels: "data/labels.txt"
+  device: "cuda"  # "cuda" or "cpu"
+  head_size: 64
+  max_len: 512
+  stride: 256
+  batch_size: 8
+  threshold: 0.5
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 2
+
+logging:
+  level: "INFO"
+  format: "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+  file: "logs/app.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
