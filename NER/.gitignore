@@ -1,11 +1,12 @@
-# 数据相关
+# 数据相关 - 只保留文件夹本身
 /data/
-/data/*
-!/data/README.md
+!/data/
 
-# 模型相关
+# 模型相关 - 只保留文件夹本身
 /pretrain/
+!/pretrain/
 /checkpoint/
+!/checkpoint/
 
 # 日志文件
 /logs/
@@ -14,9 +15,9 @@
 # 编译器/IDE生成文件
 .vscode/
 .idea/
+/__pycache__/
 *.swp
 *.swo
-__pycache__/
 *.py[cod]
 *$py.class
 *.so
